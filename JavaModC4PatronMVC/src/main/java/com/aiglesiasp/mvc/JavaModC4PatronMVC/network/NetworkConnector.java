@@ -4,9 +4,14 @@
 package com.aiglesiasp.mvc.JavaModC4PatronMVC.network;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
 
@@ -49,20 +54,51 @@ public class NetworkConnector {
 			System.out.println(ex);
 		}
 	}
-	
-	//INSERTAR CLIENTES
+
+	// INSERTAR CLIENTES
 	public void insertDataCliente(Cliente cliente) {
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "INSERT INTO cliente VALUES ("+cliente.getId()+", '"+cliente.getNombre()+"', '"+cliente.getApellido()+"', '"+cliente.getDireccion()+"', "+cliente.getDni()+", '"+cliente.getFecha()+"');";
+			java.util.Date fecha = cliente.getFecha();
+			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+			
+			String Query = "INSERT INTO cliente (nombre, apellido, direccion, dni, fecha) VALUES ('"
+					+ cliente.getNombre() + "', '" + cliente.getApellido() + "', '" + cliente.getDireccion() + "', "
+					+ cliente.getDni() + ", '" +sqlFecha+ "');";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			System.out.println("Datos insertados correctamente en la table  clientes");
-		}catch(SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error insertando datos en la tabla clientes");
 		}
+	}
+
+	public int generarAutoIncrementalCliente() {
+		int id = 1;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			String Querydb = "USE clientes";
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(Querydb);
+
+			String Query = "SELECT MAX(ID) FROM cliente;";
+			ps = conexion.prepareStatement(Query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getInt(1) + 1;
+			}
+//			Statement st = conexion.createStatement();
+//			st.executeUpdate(Query);
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error insertando datos en la tabla clientes");
+		}
+		return id;
 	}
 }

@@ -3,7 +3,14 @@
  */
 package com.aiglesiasp.mvc.JavaModC4PatronMVC.models;
 
-import java.sql.Date;
+
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.NetworkConnector;
 
 /**
  * @author aitor
@@ -16,18 +23,16 @@ public class Cliente {
 	private String direccion;
 	private int dni;
 	private Date fecha;
-	
-	private int contador=0;
-	
+		
 	//CONSTRUCTOR
 	@SuppressWarnings("deprecation")
-	public Cliente(int id) {
-		this.id = id;
-		this.nombre = "";
-		this.apellido = "";
-		this.direccion = "";
-		this.dni = 00000000;
-		this.fecha = new Date(123,3,4);
+	public Cliente(String nombre, String apellido, String direccion, int dni) {
+		this.id = generarIdAutoIncremental();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.dni = dni;
+		this.fecha = generarFechaActual();
 	}
 	
 	//GETTERS y SETTERS
@@ -79,9 +84,14 @@ public class Cliente {
 		this.fecha = fecha;
 	}
 
-	private int generarId() {
-		contador++;
-		return contador;
+	private int generarIdAutoIncremental() {
+		NetworkConnector connector = new NetworkConnector();
+		int res = connector.generarAutoIncrementalCliente();
+		return res;
+	}
+	
+	private Date generarFechaActual() {
+		return new Date();
 	}
 
 	@Override
