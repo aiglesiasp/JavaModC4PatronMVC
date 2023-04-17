@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.exercise1.FirstExerciseController;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.FirstExerciseView;
 
 /**
  * @author aitor

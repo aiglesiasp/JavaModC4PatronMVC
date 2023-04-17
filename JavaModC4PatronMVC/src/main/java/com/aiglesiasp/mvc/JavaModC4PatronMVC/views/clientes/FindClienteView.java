@@ -1,4 +1,4 @@
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes;
 
 import java.awt.EventQueue;
 
@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class FindView extends JFrame {
+public class FindClienteView extends JFrame {
 
 	private JPanel contentPane;
 	public JTextField textFieldId;
@@ -21,7 +21,7 @@ public class FindView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FindView() {
+	public FindClienteView() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

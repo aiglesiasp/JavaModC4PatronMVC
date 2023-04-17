@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.exercise1;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,19 +12,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.NetworkConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.CreateView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.CreateClienteView;
 
 /**
  * @author aitor
  *
  */
-public class CreateController implements ActionListener {
+public class CreateClienteController implements ActionListener {
 
-	private CreateView view;
-	private NetworkConnector connector;
+	private CreateClienteView view;
+	private ClienteConnector connector;
 
-	public CreateController(CreateView view) {
+	public CreateClienteController(CreateClienteView view) {
 		this.view = view;
 		this.view.btnAceptar.addActionListener(this);
 	}
@@ -60,7 +60,7 @@ public class CreateController implements ActionListener {
 			} else {
 				int dni = Integer.parseInt(dniText);
 				Cliente c = new Cliente(nombre, apellido, direccion, dni);
-				connector = new NetworkConnector();
+				connector = new ClienteConnector();
 				connector.insertDataCliente(c);
 				connector.closeConnection();
 				JOptionPane.showMessageDialog(null, "Usuario agregado correctamente");

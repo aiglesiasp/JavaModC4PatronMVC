@@ -19,7 +19,7 @@ import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
  * @author aitor
  *
  */
-public class NetworkConnector {
+public class ClienteConnector {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC";
 	private static final String USER = "root";
@@ -28,7 +28,7 @@ public class NetworkConnector {
 	private static Connection conexion = null;
 
 	// CREAR CONEXIÓN
-	public NetworkConnector() {
+	public ClienteConnector() {
 		try {
 			Class.forName(DRIVER);
 			conexion = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -76,6 +76,7 @@ public class NetworkConnector {
 		}
 	}
 
+	//BUSCAR CLIENTE
 	public Cliente findDataCliente(int id) {
 		Cliente cliente = new Cliente();
 		boolean existe = false;
@@ -111,57 +112,53 @@ public class NetworkConnector {
 			return null;
 	}
 
-	public void updateDataCliente(int id) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Cliente cliente = new Cliente();
-		Cliente clienteUpdate = new Cliente();		
+	//ELIMINAR CLIENTE
+	public void updateDataCliente(Cliente cliente) {
+		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 
-			String Query = "SELECT * FROM cliente WHERE id = " + id + ";";
-			ps = conexion.prepareStatement(Query);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				cliente.setId(rs.getInt("id"));
-				cliente.setNombre(rs.getString("nombre"));
-				cliente.setApellido(rs.getString("apellido"));
-				cliente.setDireccion(rs.getString("direccion"));
-				cliente.setDni(rs.getInt("dni"));
-				cliente.setFecha(rs.getDate("fecha"));
-			}
-
+			java.util.Date fecha = cliente.getFecha();
+			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+			
+			String consulta = "UPDATE cliente SET id= ?, nombre= ?, apellido= ?, direccion= ?, dni= ?, fecha= ? WHERE id= ? ";
+			st = conexion.prepareStatement(consulta);
+			st.setInt(1, cliente.getId());
+			st.setString(2, cliente.getNombre());
+			st.setString(3, cliente.getApellido());
+			st.setString(4, cliente.getDireccion());
+			st.setInt(5, cliente.getDni());
+			st.setDate(6, sqlFecha);
+			st.setInt(7, cliente.getId());
+			st.executeUpdate();
+			System.out.println(cliente.toString());
+			
+			
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error actualizando datos en la tabla clientes");
 		}
 	}
-
-	public int generarAutoIncrementalCliente() {
-		int id = 1;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
+	
+	public void deleteDataCliente(int id) {
+		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-
-			String Query = "SELECT MAX(ID) FROM cliente;";
-			ps = conexion.prepareStatement(Query);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				id = rs.getInt(1) + 1;
-			}
-//			Statement st = conexion.createStatement();
-//			st.executeUpdate(Query);
-
-		} catch (SQLException ex) {
+			
+			String consulta = "DELETE FROM cliente WHERE id= ? ";
+			st = conexion.prepareStatement(consulta);
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+			
+		}catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error insertando datos en la tabla clientes");
+			System.out.println("Error actualizando datos en la tabla clientes");
 		}
-		return id;
 	}
+
 }

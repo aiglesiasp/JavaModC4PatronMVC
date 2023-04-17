@@ -1,4 +1,4 @@
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class CreateView extends JFrame {
+public class CreateClienteView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -21,7 +21,7 @@ public class CreateView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateView() {
+	public CreateClienteView() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

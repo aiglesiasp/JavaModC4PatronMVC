@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.exercise1;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,19 +10,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.NetworkConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.FindView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.FindClienteView;
 
 /**
  * @author aitor
  *
  */
-public class FindController implements ActionListener{
+public class FindClienteController implements ActionListener{
 	
-	private FindView view;
-	private NetworkConnector connector;
+	private FindClienteView view;
+	private ClienteConnector connector;
 	
-	public FindController(FindView view) {
+	public FindClienteController(FindClienteView view) {
 		this.view = view;
 		this.view.btnBuscar.addActionListener(this);
 	}
@@ -45,15 +45,13 @@ public class FindController implements ActionListener{
 			idText = view.textFieldId.getText();
 			if(idText.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
-				estado = true;
 			} else {
 				int id = Integer.parseInt(idText);
-				connector = new NetworkConnector();
+				connector = new ClienteConnector();
 				c = connector.findDataCliente(id);
 				connector.closeConnection();
 				if(c == null) {
 					JOptionPane.showMessageDialog(null, "No existe ese Cliente");
-					estado = true;
 				} else {
 					view.textAreaCliente.setText("");
 					view.textAreaCliente.append("ID: "+c.getId()+"\n");
@@ -62,10 +60,9 @@ public class FindController implements ActionListener{
 					view.textAreaCliente.append("DIRECCION: "+c.getDireccion()+"\n");
 					view.textAreaCliente.append("DNI: "+c.getDni()+"\n");
 					view.textAreaCliente.append("FECHA: "+c.getFecha().toString()+"\n");
-					estado = true;
 				}
 			}
-			view.setVisible(estado);
+			view.setVisible(true);
 			
 		}
 		

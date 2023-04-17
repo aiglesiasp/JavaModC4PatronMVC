@@ -1,4 +1,4 @@
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.views;
 
 
 

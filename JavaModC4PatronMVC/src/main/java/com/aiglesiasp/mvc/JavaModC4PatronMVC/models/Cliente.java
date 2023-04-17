@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.NetworkConnector;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
 
 /**
  * @author aitor
