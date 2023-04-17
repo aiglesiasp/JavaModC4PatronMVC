@@ -4,14 +4,11 @@
 package com.aiglesiasp.mvc.JavaModC4PatronMVC.network;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
 
@@ -76,7 +73,7 @@ public class ClienteConnector {
 		}
 	}
 
-	//BUSCAR CLIENTE
+	// BUSCAR CLIENTE
 	public Cliente findDataCliente(int id) {
 		Cliente cliente = new Cliente();
 		boolean existe = false;
@@ -112,7 +109,7 @@ public class ClienteConnector {
 			return null;
 	}
 
-	//ELIMINAR CLIENTE
+	// ELIMINAR CLIENTE
 	public void updateDataCliente(Cliente cliente) {
 		PreparedStatement st = null;
 		try {
@@ -122,7 +119,7 @@ public class ClienteConnector {
 
 			java.util.Date fecha = cliente.getFecha();
 			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
-			
+
 			String consulta = "UPDATE cliente SET id= ?, nombre= ?, apellido= ?, direccion= ?, dni= ?, fecha= ? WHERE id= ? ";
 			st = conexion.prepareStatement(consulta);
 			st.setInt(1, cliente.getId());
@@ -134,28 +131,26 @@ public class ClienteConnector {
 			st.setInt(7, cliente.getId());
 			st.executeUpdate();
 			System.out.println(cliente.toString());
-			
-			
+
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error actualizando datos en la tabla clientes");
 		}
 	}
-	
+
 	public void deleteDataCliente(int id) {
 		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			
+
 			String consulta = "DELETE FROM cliente WHERE id= ? ";
 			st = conexion.prepareStatement(consulta);
 			st.setInt(1, id);
 			st.executeUpdate();
-			
-			
-		}catch (SQLException ex) {
+
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error actualizando datos en la tabla clientes");
 		}

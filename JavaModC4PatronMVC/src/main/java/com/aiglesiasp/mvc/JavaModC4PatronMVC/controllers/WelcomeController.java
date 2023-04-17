@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.SecondExerciseView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
 
 /**
@@ -43,9 +43,13 @@ public class WelcomeController implements ActionListener {
 			FirstExerciseController firstController = new FirstExerciseController(firstView);
 			view.setVisible(false);
 			firstController.initView();
-			
+
 		}
 		if (view.btnEjercicio2 == e.getSource()) {
+			SecondExerciseView secondView = new SecondExerciseView();
+			SecondExerciseController secondController = new SecondExerciseController(secondView);
+			view.setVisible(false);
+			secondController.initView();
 
 		}
 		if (view.btnEjercicio2 == e.getSource()) {

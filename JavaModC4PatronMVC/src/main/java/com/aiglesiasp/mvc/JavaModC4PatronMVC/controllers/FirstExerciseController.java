@@ -12,8 +12,6 @@ import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.CreateClienteC
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.DeleteClienteController;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.FindClienteController;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.UpdateClienteController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.CreateClienteView;
@@ -28,7 +26,6 @@ import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.UpdateClienteView;
 public class FirstExerciseController implements ActionListener {
 
 	private FirstExerciseView view;
-	private ClienteConnector connector;
 
 	public FirstExerciseController(FirstExerciseView view) {
 		this.view = view;
@@ -40,7 +37,7 @@ public class FirstExerciseController implements ActionListener {
 	}
 
 	public void initView() {
-		view.setTitle("EXERCISE 1");
+		view.setTitle("PANTALLA DE CLIENTE");
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setLocationRelativeTo(null);
 		view.setSize(450, 300);
@@ -49,7 +46,7 @@ public class FirstExerciseController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		boolean estado = false;
+		boolean estado = true;
 		if (view.btnCreate == e.getSource()) {
 			CreateClienteView v = new CreateClienteView();
 			CreateClienteController c = new CreateClienteController(v);
@@ -71,7 +68,6 @@ public class FirstExerciseController implements ActionListener {
 			c.initView();
 		}
 
-		
 		if (view.btnDelete == e.getSource()) {
 			DeleteClienteView v = new DeleteClienteView();
 			DeleteClienteController c = new DeleteClienteController(v);

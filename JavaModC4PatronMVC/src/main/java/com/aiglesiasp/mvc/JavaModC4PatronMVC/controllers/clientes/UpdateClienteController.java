@@ -5,7 +5,6 @@ package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -34,7 +33,7 @@ public class UpdateClienteController implements ActionListener {
 	}
 
 	public void initView() {
-		view.setTitle("UPDATE");
+		view.setTitle("MODIFICAR CLIENTE");
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setLocationRelativeTo(null);
 		view.setSize(450, 300);
@@ -92,8 +91,8 @@ public class UpdateClienteController implements ActionListener {
 			view.setVisible(true);
 
 		}
-		
-		if(view.btnAtras == e.getSource()) {
+
+		if (view.btnAtras == e.getSource()) {
 			FirstExerciseView v = new FirstExerciseView();
 			FirstExerciseController cv = new FirstExerciseController(v);
 			cv.initView();

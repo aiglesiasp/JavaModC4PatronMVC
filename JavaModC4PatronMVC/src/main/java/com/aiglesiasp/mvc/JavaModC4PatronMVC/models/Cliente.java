@@ -3,14 +3,7 @@
  */
 package com.aiglesiasp.mvc.JavaModC4PatronMVC.models;
 
-
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
 
 /**
  * @author aitor
@@ -23,12 +16,12 @@ public class Cliente {
 	private String direccion;
 	private int dni;
 	private Date fecha;
-	
+
 	public Cliente() {
-		
+
 	}
-		
-	//CONSTRUCTOR
+
+	// CONSTRUCTOR
 	@SuppressWarnings("deprecation")
 	public Cliente(String nombre, String apellido, String direccion, int dni) {
 		this.nombre = nombre;
@@ -37,8 +30,8 @@ public class Cliente {
 		this.dni = dni;
 		this.fecha = generarFechaActual();
 	}
-	
-	//GETTERS y SETTERS
+
+	// GETTERS y SETTERS
 	public int getId() {
 		return id;
 	}
@@ -86,7 +79,7 @@ public class Cliente {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
 	private Date generarFechaActual() {
 		return new Date();
 	}
@@ -96,6 +89,5 @@ public class Cliente {
 		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion
 				+ ", dni=" + dni + ", fecha=" + fecha + "]";
 	}
-	
-	
+
 }

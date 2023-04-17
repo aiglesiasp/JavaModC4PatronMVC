@@ -11,8 +11,10 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.FirstExerciseController;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.CreateClienteView;
 
 /**
@@ -30,7 +32,7 @@ public class CreateClienteController implements ActionListener {
 	}
 
 	public void initView() {
-		view.setTitle("CREATE");
+		view.setTitle("CREATE CLIENTE");
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setLocationRelativeTo(null);
 		view.setSize(450, 300);
@@ -47,14 +49,14 @@ public class CreateClienteController implements ActionListener {
 			String apellido = view.textApellido.getText();
 			String direccion = view.textDireccion.getText();
 			String dniText = view.textDni.getText();
-			//Comprovar cadena
+			// Comprovar cadena
 			pat = Pattern.compile("[^a-zA-Z]*");
 			mat = pat.matcher(dniText);
-			
-			if(nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || dniText.isEmpty()) {
+
+			if (nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || dniText.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
 				estado = true;
-			}else if(!mat.matches() || dniText.length()>=11) {
+			} else if (!mat.matches() || dniText.length() >= 11) {
 				JOptionPane.showMessageDialog(null, "Formato DNI Incorrecto");
 				estado = true;
 			} else {
@@ -66,9 +68,11 @@ public class CreateClienteController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Usuario agregado correctamente");
 				estado = false;
 			}
+			FirstExerciseView v = new FirstExerciseView();
+			FirstExerciseController c = new FirstExerciseController(v);
+			c.initView();
 			view.setVisible(estado);
 		}
-		
 
 	}
 
