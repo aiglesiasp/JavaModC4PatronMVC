@@ -34,24 +34,24 @@ public class FirstExerciseView extends JFrame {
 		lblEjercicioCliente.setBounds(125, 10, 200, 20);
 		contentPane.add(lblEjercicioCliente);
 		
-		btnCreate = new JButton("CREATE");
-		btnCreate.setBounds(50, 50, 100, 30);
+		btnCreate = new JButton("CREAR");
+		btnCreate.setBounds(50, 50, 100, 100);
 		contentPane.add(btnCreate);
 		
-		btnUpdate = new JButton("UPDATE");
-		btnUpdate.setBounds(50, 100, 100, 30);
+		btnUpdate = new JButton("MODIFICAR");
+		btnUpdate.setBounds(50, 150, 100, 100);
 		contentPane.add(btnUpdate);
 		
-		btnRead = new JButton("READ");
-		btnRead.setBounds(175, 50, 100, 30);
+		btnRead = new JButton("BUSCAR");
+		btnRead.setBounds(175, 50, 100, 100);
 		contentPane.add(btnRead);
 		
-		btnDelete = new JButton("DELETE");
-		btnDelete.setBounds(175, 100, 100, 30);
+		btnDelete = new JButton("ELIMINAR");
+		btnDelete.setBounds(175, 150, 100, 100);
 		contentPane.add(btnDelete);
 		
 		btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(300, 100, 100, 30);
+		btnSalir.setBounds(300, 100, 100, 100);
 		contentPane.add(btnSalir);
 	}
 }

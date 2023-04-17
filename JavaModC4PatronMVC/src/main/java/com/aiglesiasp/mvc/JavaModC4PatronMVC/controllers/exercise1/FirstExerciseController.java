@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.NetworkConnector;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.CreateView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.FindView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.exercise1.FirstExerciseView;
 
 /**
@@ -48,11 +49,13 @@ public class FirstExerciseController implements ActionListener {
 		}
 
 		if (view.btnUpdate == e.getSource()) {
-
+			
 		}
 
 		if (view.btnRead == e.getSource()) {
-
+			FindView v = new FindView();
+			FindController c = new FindController(v);
+			c.initView();
 		}
 
 		if (view.btnDelete == e.getSource()) {

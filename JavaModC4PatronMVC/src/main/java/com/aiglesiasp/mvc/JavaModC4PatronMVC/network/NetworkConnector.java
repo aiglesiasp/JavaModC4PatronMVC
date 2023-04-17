@@ -63,16 +63,79 @@ public class NetworkConnector {
 			stdb.executeUpdate(Querydb);
 			java.util.Date fecha = cliente.getFecha();
 			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
-			
+
 			String Query = "INSERT INTO cliente (nombre, apellido, direccion, dni, fecha) VALUES ('"
 					+ cliente.getNombre() + "', '" + cliente.getApellido() + "', '" + cliente.getDireccion() + "', "
-					+ cliente.getDni() + ", '" +sqlFecha+ "');";
+					+ cliente.getDni() + ", '" + sqlFecha + "');";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			System.out.println("Datos insertados correctamente en la table  clientes");
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			System.out.println("Error insertando datos en la tabla clientes");
+		}
+	}
+
+	public Cliente findDataCliente(int id) {
+		Cliente cliente = new Cliente();
+		boolean existe = false;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			String Querydb = "USE clientes";
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(Querydb);
+
+			String Query = "SELECT * FROM cliente WHERE id = " + id + ";";
+			ps = conexion.prepareStatement(Query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				existe = true;
+				cliente.setId(rs.getInt("id"));
+				cliente.setNombre(rs.getString("nombre"));
+				cliente.setApellido(rs.getString("apellido"));
+				cliente.setDireccion(rs.getString("direccion"));
+				cliente.setDni(rs.getInt("dni"));
+				cliente.setFecha(rs.getDate("fecha"));
+			}
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error buscando datos en la tabla clientes");
+		}
+
+		if (existe) {
+			return cliente;
+		} else
+			return null;
+	}
+
+	public void updateDataCliente(int id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Cliente cliente = new Cliente();
+		Cliente clienteUpdate = new Cliente();		
+		try {
+			String Querydb = "USE clientes";
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(Querydb);
+
+			String Query = "SELECT * FROM cliente WHERE id = " + id + ";";
+			ps = conexion.prepareStatement(Query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				cliente.setId(rs.getInt("id"));
+				cliente.setNombre(rs.getString("nombre"));
+				cliente.setApellido(rs.getString("apellido"));
+				cliente.setDireccion(rs.getString("direccion"));
+				cliente.setDni(rs.getInt("dni"));
+				cliente.setFecha(rs.getDate("fecha"));
+			}
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error actualizando datos en la tabla clientes");
 		}
 	}
 

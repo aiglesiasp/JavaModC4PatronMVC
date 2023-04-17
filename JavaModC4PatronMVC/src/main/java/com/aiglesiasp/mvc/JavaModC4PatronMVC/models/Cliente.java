@@ -23,11 +23,14 @@ public class Cliente {
 	private String direccion;
 	private int dni;
 	private Date fecha;
+	
+	public Cliente() {
+		
+	}
 		
 	//CONSTRUCTOR
 	@SuppressWarnings("deprecation")
 	public Cliente(String nombre, String apellido, String direccion, int dni) {
-		this.id = generarIdAutoIncremental();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
@@ -82,12 +85,6 @@ public class Cliente {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	private int generarIdAutoIncremental() {
-		NetworkConnector connector = new NetworkConnector();
-		int res = connector.generarAutoIncrementalCliente();
-		return res;
 	}
 	
 	private Date generarFechaActual() {
