@@ -1,19 +1,18 @@
 /**
  * 
  */
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.CreateClienteController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.DeleteClienteController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.FindClienteController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.UpdateClienteController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.ClienteVideoController;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.WelcomeController;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.ClienteVideoView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.CreateClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.DeleteClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.FindClienteView;
@@ -23,11 +22,11 @@ import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.UpdateClienteView;
  * @author aitor
  *
  */
-public class FirstExerciseController implements ActionListener {
+public class ClienteController implements ActionListener {
 
-	private FirstExerciseView view;
+	private ClienteView view;
 
-	public FirstExerciseController(FirstExerciseView view) {
+	public ClienteController(ClienteView view) {
 		this.view = view;
 		this.view.btnCreate.addActionListener(this);
 		this.view.btnUpdate.addActionListener(this);
@@ -76,8 +75,8 @@ public class FirstExerciseController implements ActionListener {
 		}
 
 		if (view.btnSalir == e.getSource()) {
-			WelcomeView v = new WelcomeView();
-			WelcomeController c = new WelcomeController(v);
+			ClienteVideoView v = new ClienteVideoView();
+			ClienteVideoController c = new ClienteVideoController(v);
 			estado = false;
 			c.initView();
 		}

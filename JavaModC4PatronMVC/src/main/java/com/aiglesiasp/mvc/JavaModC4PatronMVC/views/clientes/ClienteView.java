@@ -1,4 +1,4 @@
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.views;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class FirstExerciseView extends JFrame {
+public class ClienteView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -20,7 +20,7 @@ public class FirstExerciseView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FirstExerciseView() {
+	public ClienteView() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

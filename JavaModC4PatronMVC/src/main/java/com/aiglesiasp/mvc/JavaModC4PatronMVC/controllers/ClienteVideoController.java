@@ -8,19 +8,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.SecondExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.ClienteController;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.videos.VideoController;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.ClienteVideoView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.videos.VideoView;
 
 /**
  * @author aitor
  *
  */
-public class SecondExerciseController implements ActionListener {
+public class ClienteVideoController implements ActionListener {
 
-	private SecondExerciseView view;
+	private ClienteVideoView view;
 
-	public SecondExerciseController(SecondExerciseView view) {
+	public ClienteVideoController(ClienteVideoView view) {
 		this.view = view;
 		this.view.btnClientes.addActionListener(this);
 		this.view.btnSalir.addActionListener(this);
@@ -39,12 +42,16 @@ public class SecondExerciseController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		boolean estado = true;
 		if (view.btnClientes == e.getSource()) {
-			FirstExerciseView v = new FirstExerciseView();
-			FirstExerciseController c = new FirstExerciseController(v);
+			ClienteView v = new ClienteView();
+			ClienteController c = new ClienteController(v);
 			estado = false;
 			c.initView();
 		}
 		if (view.btnVideos == e.getSource()) {
+			VideoView v = new VideoView();
+			VideoController c = new VideoController(v);
+			estado = false;
+			c.initView();
 
 		}
 		if (view.btnSalir == e.getSource()) {

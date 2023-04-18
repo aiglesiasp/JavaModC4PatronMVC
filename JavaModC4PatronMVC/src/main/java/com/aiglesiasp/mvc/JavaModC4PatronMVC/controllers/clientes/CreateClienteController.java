@@ -11,10 +11,9 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.FirstExerciseController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.ClienteModel;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.CreateClienteView;
 
 /**
@@ -61,15 +60,15 @@ public class CreateClienteController implements ActionListener {
 				estado = true;
 			} else {
 				int dni = Integer.parseInt(dniText);
-				Cliente c = new Cliente(nombre, apellido, direccion, dni);
+				ClienteModel c = new ClienteModel(nombre, apellido, direccion, dni);
 				connector = new ClienteConnector();
 				connector.insertDataCliente(c);
 				connector.closeConnection();
 				JOptionPane.showMessageDialog(null, "Usuario agregado correctamente");
 				estado = false;
 			}
-			FirstExerciseView v = new FirstExerciseView();
-			FirstExerciseController c = new FirstExerciseController(v);
+			ClienteView v = new ClienteView();
+			ClienteController c = new ClienteController(v);
 			c.initView();
 			view.setVisible(estado);
 		}

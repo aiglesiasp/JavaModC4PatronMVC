@@ -9,7 +9,7 @@ import java.util.Date;
  * @author aitor
  *
  */
-public class Cliente {
+public class ClienteModel {
 	private int id;
 	private String nombre;
 	private String apellido;
@@ -17,13 +17,13 @@ public class Cliente {
 	private int dni;
 	private Date fecha;
 
-	public Cliente() {
+	public ClienteModel() {
 
 	}
 
 	// CONSTRUCTOR
 	@SuppressWarnings("deprecation")
-	public Cliente(String nombre, String apellido, String direccion, int dni) {
+	public ClienteModel(String nombre, String apellido, String direccion, int dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;

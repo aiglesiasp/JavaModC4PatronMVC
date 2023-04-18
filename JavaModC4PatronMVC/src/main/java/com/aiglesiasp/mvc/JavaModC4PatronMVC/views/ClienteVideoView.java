@@ -14,7 +14,7 @@ import javax.swing.JButton;
  * @author aitor
  *
  */
-public class SecondExerciseView extends JFrame {
+public class ClienteVideoView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -22,7 +22,7 @@ public class SecondExerciseView extends JFrame {
 	public JButton btnVideos;
 	public JButton btnSalir;
 
-	public SecondExerciseView() {
+	public ClienteVideoView() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

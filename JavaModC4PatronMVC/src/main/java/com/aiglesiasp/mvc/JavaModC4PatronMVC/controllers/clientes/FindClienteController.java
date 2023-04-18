@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.FirstExerciseController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.ClienteModel;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.FindClienteView;
 
 /**
@@ -41,7 +40,7 @@ public class FindClienteController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String idText = "";
-		Cliente c = new Cliente();
+		ClienteModel c = new ClienteModel();
 		if (view.btnBuscar == e.getSource()) {
 			idText = view.textFieldId.getText();
 			if (idText.isEmpty()) {
@@ -65,8 +64,8 @@ public class FindClienteController implements ActionListener {
 			}
 		}
 		if (view.btnAtras == e.getSource()) {
-			FirstExerciseView v = new FirstExerciseView();
-			FirstExerciseController cv = new FirstExerciseController(v);
+			ClienteView v = new ClienteView();
+			ClienteController cv = new ClienteController(v);
 			cv.initView();
 			view.setVisible(false);
 		}

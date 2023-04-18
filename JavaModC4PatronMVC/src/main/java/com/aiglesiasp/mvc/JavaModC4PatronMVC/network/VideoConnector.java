@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.ClienteModel;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.VideoModel;
 
 /**
  * @author aitor
  *
  */
-public class ClienteConnector {
+public class VideoConnector {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC";
 	private static final String USER = "root";
@@ -25,7 +25,7 @@ public class ClienteConnector {
 	private static Connection conexion = null;
 
 	// CREAR CONEXIÓN
-	public ClienteConnector() {
+	public VideoConnector() {
 		try {
 			Class.forName(DRIVER);
 			conexion = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -52,35 +52,31 @@ public class ClienteConnector {
 		}
 	}
 
-	// INSERTAR CLIENTES
-	public void insertDataCliente(ClienteModel cliente) {
+	// INSERTAR VIDEO
+	public void insertDataVideo(VideoModel video) {
 		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			java.util.Date fecha = cliente.getFecha();
-			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
 
-			String consulta = "INSERT INTO cliente (nombre, apellido, direccion, dni, fecha) VALUES (?, ?, ?, ?, ?)";
+			String consulta = "INSERT INTO videos (title, director, cli_id) VALUES (?, ?, ?)";
 			st = conexion.prepareStatement(consulta);
-			st.setString(1, cliente.getNombre());
-			st.setString(2, cliente.getApellido());
-			st.setString(3, cliente.getDireccion());
-			st.setInt(4, cliente.getDni());
-			st.setDate(5, sqlFecha);
+			st.setString(1, video.getTitle());
+			st.setString(2, video.getDirector());
+			st.setInt(3, video.getCliId());
 			st.executeUpdate();
 
-			System.out.println("Datos insertados correctamente en la table  clientes");
+			System.out.println("Datos insertados correctamente en la tabla  videos");
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error insertando datos en la tabla clientes");
+			System.out.println("Error insertando datos en la tabla videos");
 		}
 	}
 
-	// BUSCAR CLIENTE
-	public ClienteModel findDataCliente(int id) {
-		ClienteModel cliente = new ClienteModel();
+	// BUSCAR VIDEO
+	public VideoModel findDataVideo(int id) {
+		VideoModel video = new VideoModel();
 		boolean existe = false;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -90,75 +86,70 @@ public class ClienteConnector {
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 
-			String consulta = "SELECT * FROM cliente WHERE id = ?";
+			String consulta = "SELECT * FROM videos WHERE id = ?";
 			ps = conexion.prepareStatement(consulta);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				existe = true;
-				cliente.setId(rs.getInt("id"));
-				cliente.setNombre(rs.getString("nombre"));
-				cliente.setApellido(rs.getString("apellido"));
-				cliente.setDireccion(rs.getString("direccion"));
-				cliente.setDni(rs.getInt("dni"));
-				cliente.setFecha(rs.getDate("fecha"));
+				video.setId(rs.getInt("id"));
+				video.setTitle(rs.getString("title"));
+				video.setDirector(rs.getString("director"));
+				video.setCliId(rs.getInt("cli_id"));
+
 			}
 
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error buscando datos en la tabla clientes");
+			System.out.println("Error buscando datos en la tabla videos");
 		}
 
 		if (existe) {
-			return cliente;
+			return video;
 		} else
 			return null;
 	}
 
-	// ELIMINAR CLIENTE
-	public void updateDataCliente(ClienteModel cliente) {
+	// MODIFICAR VIDEO
+	public void updateDataVideo(VideoModel video) {
 		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 
-			java.util.Date fecha = cliente.getFecha();
-			java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
-
-			String consulta = "UPDATE cliente SET id= ?, nombre= ?, apellido= ?, direccion= ?, dni= ?, fecha= ? WHERE id= ? ";
+			String consulta = "UPDATE videos SET id= ?, title= ?, director= ?, cli_id= ? WHERE id= ? ";
 			st = conexion.prepareStatement(consulta);
-			st.setInt(1, cliente.getId());
-			st.setString(2, cliente.getNombre());
-			st.setString(3, cliente.getApellido());
-			st.setString(4, cliente.getDireccion());
-			st.setInt(5, cliente.getDni());
-			st.setDate(6, sqlFecha);
-			st.setInt(7, cliente.getId());
+			st.setInt(1, video.getId());
+			st.setString(2, video.getTitle());
+			st.setString(3, video.getDirector());
+			st.setInt(4, video.getCliId());
+			st.setInt(5, video.getId());
 			st.executeUpdate();
-			System.out.println(cliente.toString());
+			System.out.println(video.toString());
 
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error actualizando datos en la tabla clientes");
+			System.out.println("Error actualizando datos en la tabla videos");
 		}
 	}
 
-	public void deleteDataCliente(int id) {
+	// ELIMINAR VIDEO
+	public void deleteDataVideo(int id) {
 		PreparedStatement st = null;
 		try {
 			String Querydb = "USE clientes";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 
-			String consulta = "DELETE FROM cliente WHERE id= ? ";
+			String consulta = "DELETE FROM videos WHERE id= ? ";
 			st = conexion.prepareStatement(consulta);
 			st.setInt(1, id);
 			st.executeUpdate();
 
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error actualizando datos en la tabla clientes");
+			System.out.println("Error eliminando datos en la tabla videos");
 		}
 	}
 

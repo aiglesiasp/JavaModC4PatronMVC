@@ -8,9 +8,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.SecondExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes.ClienteController;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.ClienteVideoView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.WelcomeView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
 
 /**
  * @author aitor
@@ -22,8 +23,7 @@ public class WelcomeController implements ActionListener {
 
 	public WelcomeController(WelcomeView view) {
 		this.view = view;
-		this.view.btnEjercicio1.addActionListener(this);
-		this.view.btnEjercicio2.addActionListener(this);
+		this.view.btnEjercicio12.addActionListener(this);
 		this.view.btnEjercicio3.addActionListener(this);
 
 	}
@@ -38,23 +38,21 @@ public class WelcomeController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (view.btnEjercicio1 == e.getSource()) {
-			FirstExerciseView firstView = new FirstExerciseView();
-			FirstExerciseController firstController = new FirstExerciseController(firstView);
+		if (view.btnEjercicio12 == e.getSource()) {
+			ClienteVideoView firstView = new ClienteVideoView();
+			ClienteVideoController firstController = new ClienteVideoController(firstView);
 			view.setVisible(false);
 			firstController.initView();
 
 		}
-		if (view.btnEjercicio2 == e.getSource()) {
-			SecondExerciseView secondView = new SecondExerciseView();
-			SecondExerciseController secondController = new SecondExerciseController(secondView);
-			view.setVisible(false);
-			secondController.initView();
+		if (view.btnEjercicio3 == e.getSource()) {
+//			CienciasView secondView = new CienciasView();
+//			CienciasController secondController = new CienciasController(secondView);
+//			view.setVisible(false);
+//			secondController.initView();
 
 		}
-		if (view.btnEjercicio2 == e.getSource()) {
-
-		}
+		
 
 	}
 

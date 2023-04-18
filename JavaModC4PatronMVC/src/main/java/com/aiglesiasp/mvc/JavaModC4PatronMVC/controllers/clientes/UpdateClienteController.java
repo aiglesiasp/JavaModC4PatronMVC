@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.FirstExerciseController;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.Cliente;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.ClienteModel;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.FirstExerciseView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
 import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.UpdateClienteView;
 
 /**
@@ -43,7 +42,7 @@ public class UpdateClienteController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String idText = "";
-		Cliente c = new Cliente();
+		ClienteModel c = new ClienteModel();
 		if (view.btnBuscar == e.getSource()) {
 			idText = view.textFieldID.getText();
 			if (idText.isEmpty()) {
@@ -76,7 +75,7 @@ public class UpdateClienteController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
 			} else {
 				int dni = Integer.parseInt(dniText);
-				Cliente c1 = new Cliente(nombre, apellidos, direccion, dni);
+				ClienteModel c1 = new ClienteModel(nombre, apellidos, direccion, dni);
 				c1.setId(id);
 				connector = new ClienteConnector();
 				connector.updateDataCliente(c1);
@@ -93,8 +92,8 @@ public class UpdateClienteController implements ActionListener {
 		}
 
 		if (view.btnAtras == e.getSource()) {
-			FirstExerciseView v = new FirstExerciseView();
-			FirstExerciseController cv = new FirstExerciseController(v);
+			ClienteView v = new ClienteView();
+			ClienteController cv = new ClienteController(v);
 			cv.initView();
 			view.setVisible(false);
 		}

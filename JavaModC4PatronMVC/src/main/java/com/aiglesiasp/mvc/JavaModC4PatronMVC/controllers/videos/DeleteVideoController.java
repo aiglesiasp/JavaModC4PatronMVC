@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.clientes;
+package com.aiglesiasp.mvc.JavaModC4PatronMVC.controllers.videos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,22 +9,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.ClienteModel;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.ClienteConnector;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.ClienteView;
-import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.clientes.DeleteClienteView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.models.VideoModel;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.network.VideoConnector;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.videos.DeleteVideoView;
+import com.aiglesiasp.mvc.JavaModC4PatronMVC.views.videos.VideoView;
 
 /**
  * @author aitor
  *
  */
-public class DeleteClienteController implements ActionListener {
+public class DeleteVideoController implements ActionListener {
 
-	private DeleteClienteView view;
-	private ClienteConnector connector;
+	private DeleteVideoView view;
+	private VideoConnector connector;
 	private int id;
 
-	public DeleteClienteController(DeleteClienteView view) {
+	public DeleteVideoController(DeleteVideoView view) {
 		this.view = view;
 		this.view.btnBuscar.addActionListener(this);
 		this.view.btnEliminar.addActionListener(this);
@@ -32,7 +32,7 @@ public class DeleteClienteController implements ActionListener {
 	}
 
 	public void initView() {
-		view.setTitle("ELIMINAR CLIENTE");
+		view.setTitle("ELIMINAR VIDEO");
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setLocationRelativeTo(null);
 		view.setSize(450, 300);
@@ -42,26 +42,24 @@ public class DeleteClienteController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String idText = "";
-		ClienteModel c = new ClienteModel();
+		VideoModel c = new VideoModel();
 		if (view.btnBuscar == e.getSource()) {
 			idText = view.textFieldId.getText();
 			if (idText.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Faltan campos por rellenar");
 			} else {
 				id = Integer.parseInt(idText);
-				connector = new ClienteConnector();
-				c = connector.findDataCliente(id);
+				connector = new VideoConnector();
+				c = connector.findDataVideo(id);
 				connector.closeConnection();
 				if (c == null) {
-					JOptionPane.showMessageDialog(null, "No existe ese Cliente");
+					JOptionPane.showMessageDialog(null, "No existe ese Video");
 				} else {
 					view.textAreaCliente.setText("");
 					view.textAreaCliente.append("ID: " + c.getId() + "\n");
-					view.textAreaCliente.append("NOMBRE: " + c.getNombre() + "\n");
-					view.textAreaCliente.append("APELLIDO: " + c.getApellido() + "\n");
-					view.textAreaCliente.append("DIRECCION: " + c.getDireccion() + "\n");
-					view.textAreaCliente.append("DNI: " + c.getDni() + "\n");
-					view.textAreaCliente.append("FECHA: " + c.getFecha().toString() + "\n");
+					view.textAreaCliente.append("TITLE: " + c.getTitle() + "\n");
+					view.textAreaCliente.append("DIRECTOR: " + c.getDirector() + "\n");
+					view.textAreaCliente.append("ID CLIENTE: " + c.getCliId() + "\n");
 				}
 			}
 
@@ -70,18 +68,18 @@ public class DeleteClienteController implements ActionListener {
 		if (view.btnEliminar == e.getSource()) {
 			String opcion = JOptionPane.showInputDialog("Estas seguro que quieres eliminar? SI/NO");
 			if (opcion.equals("SI")) {
-				connector = new ClienteConnector();
-				connector.deleteDataCliente(id);
+				connector = new VideoConnector();
+				connector.deleteDataVideo(id);
 				connector.closeConnection();
 				view.textAreaCliente.setText("");
-				JOptionPane.showMessageDialog(null, "Cliente Eliminado Correctamente");
+				JOptionPane.showMessageDialog(null, "Video Eliminado Correctamente");
 			}
 
 		}
 
 		if (view.btnAtras == e.getSource()) {
-			ClienteView v = new ClienteView();
-			ClienteController cv = new ClienteController(v);
+			VideoView v = new VideoView();
+			VideoController cv = new VideoController(v);
 			cv.initView();
 			view.setVisible(false);
 

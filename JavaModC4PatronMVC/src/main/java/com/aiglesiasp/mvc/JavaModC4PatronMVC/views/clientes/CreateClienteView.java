@@ -27,7 +27,7 @@ public class CreateClienteView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblTitleNewClient = new JLabel("Introduce los datos del nuevo cliente:");
+		JLabel lblTitleNewClient = new JLabel("Introduce los datos nuevos del cliente:");
 		lblTitleNewClient.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitleNewClient.setBounds(75, 10, 300, 20);
 		contentPane.add(lblTitleNewClient);

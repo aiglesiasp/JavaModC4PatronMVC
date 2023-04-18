@@ -10,8 +10,7 @@ public class WelcomeView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JButton btnEjercicio1;
-	public JButton btnEjercicio2;
+	public JButton btnEjercicio12;
 	public JButton btnEjercicio3;
 
 	public WelcomeView() {
@@ -24,16 +23,12 @@ public class WelcomeView extends JFrame {
 		lblNewLabel.setBounds(100, 10, 250, 20);
 		contentPane.add(lblNewLabel);
 
-		btnEjercicio1 = new JButton("Ejercicio1-Cliente");
-		btnEjercicio1.setBounds(125, 60, 200, 30);
-		contentPane.add(btnEjercicio1);
+		btnEjercicio12 = new JButton("CLIENTE-VIDEO");
+		btnEjercicio12.setBounds(125, 60, 200, 60);
+		contentPane.add(btnEjercicio12);
 
-		btnEjercicio2 = new JButton("Ejercicio2-Videos");
-		btnEjercicio2.setBounds(125, 120, 200, 30);
-		contentPane.add(btnEjercicio2);
-
-		btnEjercicio3 = new JButton("Ejercicio3-Cientificos");
-		btnEjercicio3.setBounds(125, 180, 200, 30);
+		btnEjercicio3 = new JButton("CIENTIFICOS");
+		btnEjercicio3.setBounds(125, 180, 200, 60);
 		contentPane.add(btnEjercicio3);
 	}
 }
